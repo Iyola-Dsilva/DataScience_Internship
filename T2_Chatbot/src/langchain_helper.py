@@ -15,7 +15,7 @@ import time
 load_dotenv()
 
 # Set Google API key
-os.environ['GOOGLE_API_KEY'] = "AIzaSyDe7ZhEt2qkDSwo3UB2IY9tY5713IdfSss"
+os.environ['GOOGLE_API_KEY'] = "YOUR_GOOGLE_API_KEY"
 genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 
 # Define LLM and embeddings
