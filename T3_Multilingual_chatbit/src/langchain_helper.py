@@ -17,7 +17,7 @@ import time
 load_dotenv()
 
 # Set Google API key
-os.environ['GOOGLE_API_KEY'] = "Your_google_API_key"
+os.environ['GOOGLE_API_KEY'] = "your_google_api_key"
 genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 
 # Define LLM and embeddings
@@ -113,6 +113,7 @@ def detect_and_translate_to_english(text):
     Limits detection to English, Kannada, Hindi, and French.
     """
     try:
+        # Direct handling for common greetings
         greetings = {
             "hi": "en", "hello": "en", "hey": "en",
             "namaste": "hi", "bonjour": "fr", "hola": "en",  # English fallback for 'hola'
@@ -134,7 +135,7 @@ def detect_and_translate_to_english(text):
             translated = translator.translate(text, src=detected_lang, dest="en").text
             return translated, detected_lang
 
-        return text, "en" 
+        return text, "en"  # Already in English
     except Exception as e:
         # Default to English if detection fails
         return text, "en"
@@ -155,7 +156,7 @@ def update_data_periodically():
     """
     Periodically check for new data and update the vector database.
     """
-    csv_file_path = "dataset/Banking_Dataset.csv"
+    csv_file_path = "C:/Users/iyods/GEN---AI-course/GEN---AI-course/customer_service_chatbot_LLM/dataset/Banking_Dataset.csv"
     try:
         update_vector_db(csv_file_path)
     except Exception as e:
@@ -163,11 +164,12 @@ def update_data_periodically():
 
 # Initialize the scheduler to run the update function periodically
 scheduler = BackgroundScheduler()
-scheduler.add_job(update_data_periodically, 'interval', minutes=10)
+scheduler.add_job(update_data_periodically, 'interval', minutes=2)
 scheduler.start()
 
 if __name__ == "__main__":
-    csv_file_path = "dataset/Banking_Dataset.csv"
+    # Initial setup of the vector database (first time only)
+    csv_file_path = "C:/Users/iyods/GEN---AI-course/GEN---AI-course/customer_service_chatbot_LLM/dataset/Banking_Dataset.csv"
     create_vector_db(csv_file_path)
 
     # Start the chatbot
@@ -183,7 +185,7 @@ if __name__ == "__main__":
             # Query the chatbot
             response = chain({"query": translated_query})
 
-            # Translate and response
+            # Translate and adapt response
             final_response = translate_from_english(response['result'], detected_lang)
             
             print(f"Response ({detected_lang}): {final_response}")
