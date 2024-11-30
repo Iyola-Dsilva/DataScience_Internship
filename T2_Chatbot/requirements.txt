@@ -18,3 +18,5 @@ scikit-learn==1.5.2
 sentence-transformers==2.2.2
 streamlit==1.40.1
 tokenizers==0.20.3
+grpcio==1.57.0
+protobuf==4.23.4
