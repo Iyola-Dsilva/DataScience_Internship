@@ -10,7 +10,7 @@ st.title("BANKING CHATBOT 🤖")
 # Button to create a knowledge base
 btn = st.button("Create Knowledge Base")
 if btn:
-    create_vector_db("dataset/Banking_Dataset.csv")
+    create_vector_db("C:/DataScience_Internship/T2_Chatbot/dataset/Banking_Dataset.csv")
     st.success("Knowledge Base created successfully!")
 
 # User Input

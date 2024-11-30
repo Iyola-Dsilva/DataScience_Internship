@@ -1,6 +1,5 @@
 import os
 import logging
-from dotenv import load_dotenv
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders.csv_loader import CSVLoader
 from langchain_community.embeddings import HuggingFaceInstructEmbeddings
@@ -11,11 +10,9 @@ import google.generativeai as genai
 from apscheduler.schedulers.background import BackgroundScheduler
 import time
 
-# Load environment variables
-load_dotenv()
 
 # Set Google API key
-os.environ['GOOGLE_API_KEY'] = "Your_Google_API_key"
+os.environ['GOOGLE_API_KEY'] = "AIzaSyDe7ZhEt2qkDSwo3UB2IY9tY5713IdfSss"
 genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 
 # Define LLM and embeddings
@@ -95,7 +92,7 @@ def update_data_periodically():
     """
     Periodically check for new data and update the vector database.
     """
-    csv_file_path = "dataset/Banking_Dataset.csv"
+    csv_file_path = "C:/DataScience_Internship/T2_Chatbot/dataset/Banking_Dataset.csv"
     try:
         update_vector_db(csv_file_path)
     except Exception as e:
@@ -108,7 +105,7 @@ scheduler.start()
 
 if __name__ == "__main__":
     # Initial setup of the vector database (first time only)
-    csv_file_path = "dataset/Banking_Dataset.csv"
+    csv_file_path = "C:/DataScience_Internship/T2_Chatbot/dataset/Banking_Dataset.csv"
     create_vector_db(csv_file_path)
 
     # Start the chatbot
