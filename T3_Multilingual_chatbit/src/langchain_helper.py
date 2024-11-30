@@ -109,7 +109,6 @@ ALLOWED_LANGUAGES = {
 
 def detect_and_translate_to_english(text):
     """
-    Detects the language of the input text and translates it to English if needed.
     Limits detection to English, Kannada, Hindi, and French.
     """
     try:
@@ -156,7 +155,7 @@ def update_data_periodically():
     """
     Periodically check for new data and update the vector database.
     """
-    csv_file_path = "C:/Users/iyods/GEN---AI-course/GEN---AI-course/customer_service_chatbot_LLM/dataset/Banking_Dataset.csv"
+    csv_file_path = "dataset/Banking_Dataset.csv"
     try:
         update_vector_db(csv_file_path)
     except Exception as e:
@@ -169,7 +168,7 @@ scheduler.start()
 
 if __name__ == "__main__":
     # Initial setup of the vector database (first time only)
-    csv_file_path = "C:/Users/iyods/GEN---AI-course/GEN---AI-course/customer_service_chatbot_LLM/dataset/Banking_Dataset.csv"
+    csv_file_path = "dataset/Banking_Dataset.csv"
     create_vector_db(csv_file_path)
 
     # Start the chatbot
